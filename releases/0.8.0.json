@@ -1,0 +1,71 @@
+{
+  "version": "0.8.0",
+  "tag": "v0.8.0",
+  "date": "2026-09-17",
+  "published_at": "2026-09-17T12:00:00Z",
+  "commits": 0,
+  "headline": "Eine richtige Oberfläche",
+  "body": [
+    "Bis hierher war die Oberfläche aus einzelnen, zusammengesetzten Seiten gebaut. Sie ist jetzt eine eigene Anwendung, und der bisherige Kern läuft darin weiter -- was Maschinen lesen, hat sich dabei nicht geändert.",
+    "Das größte Stück darin ist der Editor: Releases lassen sich zum ersten Mal im Browser schreiben, nicht nur im Repository oder über MCP."
+  ],
+  "image": null,
+  "covered": [],
+  "changes": [
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "web",
+      "title": "Dashboard, Log-Seite, Konto und Einwilligung in einer Anwendung",
+      "description": "Dashboard, Log-Seite, die öffentliche Log-Seite und die Einwilligungsseite sind jetzt Teil einer zusammenhängenden Oberfläche, mit gemeinsamer Navigation und gemeinsamem Aussehen.\n\nDie Adressen, die Maschinen ansprechen -- API, Webhook, MCP und die Anmeldewege -- antworten unverändert. Wer den Dienst automatisiert nutzt, merkt von diesem Umbau nichts.",
+      "pr": null,
+      "issues": [],
+      "commit": "e09aefc",
+      "date": "2026-09-16"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "editor",
+      "title": "Der Release-Editor",
+      "description": "Ein Release wird aus Blöcken geschrieben: Überschrift, Absätze, ein Bild und die Liste der Einträge, jeder mit Typ, Titel und Beschreibung.\n\nGespeichert wird gegen den Stand, der beim Öffnen gelesen wurde -- derselbe Schutz vor gegenseitigem Überschreiben wie bei den Einstellungen und beim Schreiben über MCP.\n\nWer mit ungespeicherten Änderungen weg will, wird in einem Dialog gefragt statt in einem Systemfenster, das sich nicht gestalten lässt.",
+      "pr": null,
+      "issues": [],
+      "commit": "62ea7f0",
+      "date": "2026-09-16"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "account",
+      "title": "Kontoseite und Abmelden",
+      "description": "Auf der Kontoseite steht, als wer man angemeldet ist und welche Clients Zugriff auf die eigenen Logs haben. Von dort lässt sich ein Zugriff entziehen.\n\nAbmelden geht jetzt aus dem Browser heraus, statt nur über das Löschen eines Cookies.",
+      "pr": null,
+      "issues": [],
+      "commit": "8b1b64d",
+      "date": "2026-09-17"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "dashboard",
+      "title": "Neues Log: Vorschläge statt leerem Feld",
+      "description": "Beim Anlegen eines Logs schlägt die Oberfläche die Repositories vor, in denen die App bereits installiert ist. Ein bestehendes Repository lässt sich damit übernehmen, statt den Namen von Hand einzutippen und auf einen Treffer zu hoffen.",
+      "pr": null,
+      "issues": [],
+      "commit": "e79e57a",
+      "date": "2026-09-17"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "dashboard",
+      "title": "Hinweise, die zur nächsten Handlung führen",
+      "description": "Auf der Log-Seite stand ein Abzeichen, das den Zustand der Installation nannte und sonst nichts.\n\nAn seiner Stelle stehen jetzt Hinweise, die sagen, was fehlt und wo es behoben wird -- mit dem Weg dorthin statt einer Beschreibung des Problems.",
+      "pr": null,
+      "issues": [],
+      "commit": "27e0f30",
+      "date": "2026-09-17"
+    }
+  ]
+}
