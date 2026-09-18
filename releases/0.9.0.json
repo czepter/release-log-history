@@ -1,0 +1,71 @@
+{
+  "version": "0.9.0",
+  "tag": "v0.9.0",
+  "date": "2026-09-17",
+  "published_at": "2026-09-17T20:00:00Z",
+  "commits": 0,
+  "headline": "Eine Startseite und offene Registrierung",
+  "body": [
+    "Der Dienst hat eine Vordertür bekommen -- und sie zeigt sich selbst: Auf der Startseite steht der Changelog des Dienstes, ausgeliefert über genau den Weg, den man dort angeboten bekommt.",
+    "Gleichzeitig fällt die Freischaltliste weg. Jedes GitHub-Konto kann sich anmelden."
+  ],
+  "image": null,
+  "covered": [],
+  "changes": [
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "landing",
+      "title": "Die Startseite zeigt den eigenen Changelog",
+      "description": "Auf der Startseite steht, wofür der Dienst da ist -- und darunter der Changelog des Dienstes selbst, geladen über die öffentliche Adresse eines Logs.\n\nDas ist kein Bild und kein nachgebautes Beispiel: Es ist derselbe Weg, den jeder andere Log auch nimmt. Was hier nicht funktioniert, funktioniert auch bei niemand anderem.",
+      "pr": null,
+      "issues": [],
+      "commit": "60ae8d5",
+      "date": "2026-09-17"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "landing",
+      "title": "Mitlaufender Kopf und Anrisse",
+      "description": "Beim Scrollen durch einen langen Changelog bleibt die Kopfzeile stehen und zeigt mit, in welcher Version man gerade liest.\n\nÄltere Releases stehen als Anriss da und lassen sich aufklappen. Die Seite bleibt damit auch dann überschaubar, wenn ein Log zwanzig Versionen tief ist.",
+      "pr": null,
+      "issues": [],
+      "commit": "672675f",
+      "date": "2026-09-17"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "auth",
+      "title": "Jedes GitHub-Konto darf sich anmelden",
+      "description": "Die Freischaltliste ist für diesen Dienst nicht mehr im Weg: Wer ein GitHub-Konto hat, meldet sich an und legt los.\n\nWer den Dienst selbst betreibt, kann die Liste weiter benutzen -- sie ist eine Einstellung geworden, keine Voraussetzung. Die Hinweise auf die Warteliste sind von der Startseite verschwunden, weil es keine mehr gibt.",
+      "pr": null,
+      "issues": [],
+      "commit": "31d0412",
+      "date": "2026-09-17"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "embed",
+      "title": "Den Log in die eigene Seite einbetten",
+      "description": "Auf der Log-Seite stehen fertige Schnipsel zum Kopieren, mit denen sich der Changelog in die eigene Website einbetten lässt.\n\nWer lieber selbst gestaltet, findet dort ebenso den Weg zu den Rohdaten.",
+      "pr": null,
+      "issues": [],
+      "commit": "a3ff8cc",
+      "date": "2026-09-17"
+    },
+    {
+      "type": "fix",
+      "breaking": false,
+      "scope": "landing",
+      "title": "Die Startseite als angemeldeter Besucher",
+      "description": "Angemeldet war die Startseite unbrauchbar: Sie bot weiterhin die Anmeldung an, und die Sitzung wurde beim Laden kurz vergessen, sodass die Seite sichtbar umsprang.\n\nJetzt führen die Knöpfe dort ins Dashboard, und die Anmeldung ist von Anfang an bekannt. Das GitHub-Zeichen steht wieder auf den Anmeldeknöpfen, damit erkennbar bleibt, wohin man geschickt wird.",
+      "pr": null,
+      "issues": [],
+      "commit": "61404af",
+      "date": "2026-09-17"
+    }
+  ]
+}
