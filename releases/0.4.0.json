@@ -1,0 +1,60 @@
+{
+  "version": "0.4.0",
+  "tag": "v0.4.0",
+  "date": "2026-09-14",
+  "published_at": "2026-09-14T18:00:00Z",
+  "commits": 0,
+  "headline": "Anmelden mit GitHub",
+  "body": [
+    "Der Dienst weiß jetzt, wer vor ihm steht, und leitet daraus ab, was jemand darf.",
+    "Die Regel ist bewusst einfach gehalten: Wer auf das Repository schreiben darf, darf auch dessen Log schreiben. Eine zweite Rechteverwaltung, die mit der ersten auseinanderläuft, gibt es nicht."
+  ],
+  "image": null,
+  "covered": [],
+  "changes": [
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "auth",
+      "title": "Anmeldung über das GitHub-Konto",
+      "description": "Angemeldet wird mit GitHub. Nach der Rückkehr wird die Sitzung in einem signierten Cookie gehalten, das sich nicht nachbauen lässt.\n\nUnter einer eigenen Adresse steht danach, als wer man angemeldet ist. Eine abgelehnte oder abgebrochene Anmeldung hinterlässt keinen Eintrag und führt zu einer Fehlermeldung statt zu einem Absturz.",
+      "pr": null,
+      "issues": [],
+      "commit": "0faf939",
+      "date": "2026-09-14"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "auth",
+      "title": "Schreibrecht kommt vom Repository",
+      "description": "Ob jemand einen Log schreiben darf, entscheidet GitHub: Wer auf das Repository schreiben darf, darf es auch auf den Log.\n\nDie Antwort wird fünf Minuten gemerkt, damit nicht jede Seite eine eigene Anfrage auslöst. Mitgliedschaften bleiben also nicht länger als fünf Minuten veraltet -- und bei einer gemeldeten Änderung an Mitgliedern oder an der Installation wird sofort verworfen statt abgewartet.\n\nWechselt ein Repository seine Kennung, werden die dazu gemerkten Rechte mit aufgeräumt.",
+      "pr": null,
+      "issues": [],
+      "commit": "9f1edda",
+      "date": "2026-09-14"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "auth",
+      "title": "Freischaltliste für den Anfang",
+      "description": "In dieser Phase kam nicht jedes GitHub-Konto herein. Wer sich anmelden darf, steht in einer Liste; ohne Eintrag kommt niemand durch außer den Konten, die als Administratoren hinterlegt sind.\n\nGedacht war das als Bremse, solange der Dienst noch nicht öffentlich stand. Später kam die offene Registrierung dazu.",
+      "pr": null,
+      "issues": [],
+      "commit": "3aa711a",
+      "date": "2026-09-14"
+    },
+    {
+      "type": "fix",
+      "breaking": false,
+      "scope": "server",
+      "title": "Ein Fehler in einer Anfrage nimmt nicht den Dienst mit",
+      "description": "Ein Fehler beim Anmelden -- etwa eine abgelehnte Antwort von GitHub -- konnte den Server beenden, statt nur diese eine Anfrage scheitern zu lassen.\n\nJetzt wird jede Anfrage einzeln abgefangen. Die betroffene Anfrage bekommt eine Fehlermeldung, alle anderen laufen weiter.",
+      "pr": null,
+      "issues": [],
+      "commit": "b756924",
+      "date": "2026-09-14"
+    }
+  ]
+}
