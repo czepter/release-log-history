@@ -1,0 +1,82 @@
+{
+  "version": "0.1.0",
+  "tag": "v0.1.0",
+  "date": "2026-09-09",
+  "published_at": "2026-09-09T18:00:00Z",
+  "commits": 0,
+  "headline": "Ein Log aus Dateien",
+  "body": [
+    "Der erste lauffähige Stand: ein Log ist ein Ordner mit JSON-Dateien, und der Dienst liefert daraus eine API aus. Noch ohne GitHub, noch ohne Anmeldung -- gelesen wird von der Platte.",
+    "Die Form der Dateien steht damit fest, und sie hat sich seitdem nicht mehr geändert."
+  ],
+  "image": null,
+  "covered": [],
+  "changes": [
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "format",
+      "title": "Die Form eines Logs",
+      "description": "Ein Log besteht aus einer release-log.json mit den Einstellungen und je einer Datei pro Release. Ein Release hat eine Version, ein Datum, eine Überschrift, Fließtext und eine Liste von Einträgen.\n\nJeder Eintrag hat einen Typ und kann als Breaking Change markiert sein. Daraus entstehen die Abschnitte: Breaking Changes stehen oben unter \"Wichtig\" und tauchen kein zweites Mal in ihrem eigenen Abschnitt auf, danach folgen Neu, Änderungen und Behoben.\n\nReleases werden nach Datum sortiert; bei gleichem Datum entscheidet die Versionsnummer, und zwar der Zahl nach -- 1.10 kommt nach 1.9, nicht davor.\n\nWas nicht in diese Form passt, wird beim Einlesen abgelehnt und als Fehler gemeldet, statt halb geladen zu werden.",
+      "pr": null,
+      "issues": [],
+      "commit": "93f8631",
+      "date": "2026-09-09"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "api",
+      "title": "Versionen, Feed und Einzelabruf",
+      "description": "Drei Wege, einen Log zu lesen: die Liste aller Versionen, ein durchblätterbarer Feed mit der Anzahl der Einträge je Abschnitt, und eine einzelne Version mit allen Einträgen.\n\nEntwürfe bleiben dabei unsichtbar. Welche Version die jüngste ist, wird trotzdem aus der vollständigen Liste bestimmt -- sonst hätte ein unveröffentlichter Entwurf die Anzeige für alle anderen verschoben.",
+      "pr": null,
+      "issues": [],
+      "commit": "c46403c",
+      "date": "2026-09-09"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "index",
+      "title": "Ein Index, der sich wegwerfen lässt",
+      "description": "Unter der API liegt eine SQLite-Datenbank. Sie ist kein zweiter Ort der Wahrheit, sondern nur eine schnelle Kopie: sie lässt sich jederzeit löschen und allein aus den Dateien neu aufbauen.\n\nBeim Abgleich werden nur die Dateien gelesen, deren Inhalt sich geändert hat. Eine kaputte Release-Datei nimmt nicht den ganzen Log mit: die betroffene Version verschwindet, der Rest bleibt stehen, und der Fehler wird gezählt und gemeldet.",
+      "pr": null,
+      "issues": [],
+      "commit": "7825d7d",
+      "date": "2026-09-09"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "media",
+      "title": "Bilder im Log",
+      "description": "Ein Log darf Bilder mitbringen. Sie liegen in einem media/-Ordner neben den Releases und werden über dieselbe Adresse ausgeliefert wie der Log selbst.\n\nZugelassen ist eine feste Liste von Bildformaten, und es gilt eine Größengrenze. Alles andere wird beim Indexieren übergangen. Bilder eines nicht öffentlichen Logs werden nicht ausgeliefert.",
+      "pr": null,
+      "issues": [],
+      "commit": "a096010",
+      "date": "2026-09-09"
+    },
+    {
+      "type": "perf",
+      "breaking": false,
+      "scope": "api",
+      "title": "Keine zweite Antwort für denselben Stand",
+      "description": "Jede Antwort trägt eine Kennung, die am indexierten Stand des Logs hängt. Wer diese Kennung beim nächsten Abruf mitschickt und nichts verpasst hat, bekommt eine kurze Antwort ohne Inhalt statt derselben Daten noch einmal.\n\nDas gilt auch für Adressen, die es nicht gibt -- eine 404 wird nicht fälschlich als \"unverändert\" abgehakt.",
+      "pr": null,
+      "issues": [],
+      "commit": "a4be49d",
+      "date": "2026-09-09"
+    },
+    {
+      "type": "fix",
+      "breaking": false,
+      "scope": "api",
+      "title": "Adressen mit Sonderzeichen",
+      "description": "Versionsnummern und Log-Namen stehen in der Adresse. Wo sie Zeichen enthalten, die dort eine Bedeutung haben, werden sie kodiert -- einmal beim Erzeugen der Adresse und einmal beim Auflösen, nicht doppelt und nicht gar nicht.\n\nDamit funktionieren Permalinks auch für Versionen, die nicht nur aus Ziffern und Punkten bestehen.",
+      "pr": null,
+      "issues": [],
+      "commit": "ef4288a",
+      "date": "2026-09-09"
+    }
+  ]
+}
