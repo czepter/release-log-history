@@ -1,0 +1,71 @@
+{
+  "version": "0.2.0",
+  "tag": "v0.2.0",
+  "date": "2026-09-10",
+  "published_at": "2026-09-10T18:00:00Z",
+  "commits": 0,
+  "headline": "Logs kommen aus echten Repositories",
+  "body": [
+    "Bis hierher lagen die Logs auf der Platte. Jetzt liest der Dienst sie dort, wo sie hingehören: in einem GitHub-Repository, in das die App installiert ist.",
+    "Damit kommen die unangenehmen Fälle dazu -- Ratenbegrenzungen, umbenannte Repositories, entzogene Installationen. Dieser Release besteht größtenteils daraus, sie richtig zu behandeln."
+  ],
+  "image": null,
+  "covered": [],
+  "changes": [
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "github",
+      "title": "Ein Log aus einem GitHub-Repository",
+      "description": "Der Dienst meldet sich als GitHub-App an, holt sich für jede Installation einen eigenen Zugang und liest damit den Stand des Repositories, sein Dateiverzeichnis und die einzelnen Dateien.\n\nGelesen wird gegen die unveränderliche Kennung des Repositories, nicht gegen seinen Namen. Ein Repository, das umbenannt oder verschoben wird, bleibt derselbe Log.\n\nEin Verzeichnis, das GitHub nur teilweise ausliefert, wird abgelehnt statt als vollständig behandelt -- sonst würden Releases verschwinden, die es noch gibt.",
+      "pr": null,
+      "issues": [],
+      "commit": "98c10ea",
+      "date": "2026-09-10"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "cli",
+      "title": "Einen Log von der Kommandozeile einlesen",
+      "description": "Ein Befehl liest ein echtes Repository ein und schreibt in den Index. Er sagt für jeden Log, was passiert ist und warum er gegebenenfalls übersprungen wurde.\n\nDas ist der Weg, einen Index nach einem Ausfall oder einem Umzug neu aufzubauen, ohne auf die nächste Zustellung von GitHub zu warten.",
+      "pr": null,
+      "issues": [],
+      "commit": "4a16840",
+      "date": "2026-09-10"
+    },
+    {
+      "type": "fix",
+      "breaking": false,
+      "scope": "github",
+      "title": "Geduld bei Ratenbegrenzung und Störungen",
+      "description": "Läuft das Kontingent bei GitHub leer oder antwortet der Dienst mit einem Fehler, wird nach einer Wartezeit erneut versucht, in festen Grenzen statt endlos.\n\nDie Wartezeit richtet sich nach dem, was GitHub mitteilt. Fehlt diese Angabe, wird trotzdem gewartet statt sofort noch einmal gefragt. Auch die zweite, weniger sichtbare Form der Ratenbegrenzung wird erkannt, selbst wenn das normale Kontingent noch reicht.",
+      "pr": null,
+      "issues": [],
+      "commit": "b363d20",
+      "date": "2026-09-10"
+    },
+    {
+      "type": "fix",
+      "breaking": false,
+      "scope": "sync",
+      "title": "Ein Log friert erst ein, wenn das Repository wirklich weg ist",
+      "description": "Ein Log, dessen Repository nicht mehr erreichbar ist, wurde eingefroren -- auch dann, wenn es nur umbenannt oder verschoben worden war.\n\nJetzt wird in einem Zug geprüft, ob das Repository existiert, wie es heißt und welche Kennung es trägt. Eingefroren wird nur, was tatsächlich verschwunden ist. Ein entzogener Zugang wird verworfen statt weiterverwendet.\n\nGleichzeitig geschlossen: ein Repository-Name, der nach einer Löschung neu vergeben wurde, konnte einen fremden Log übernehmen. Entschieden wird jetzt über die Kennung, nicht über den Namen.",
+      "pr": null,
+      "issues": [],
+      "commit": "eeb460b",
+      "date": "2026-09-10"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "webhook",
+      "title": "Zustellungen von GitHub prüfen",
+      "description": "GitHub meldet Änderungen an einer eigenen Adresse. Jede Meldung wird gegen das gemeinsame Geheimnis geprüft, bevor irgendetwas mit ihr geschieht, und daraus wird bestimmt, welche Repositories betroffen sind.\n\nWas die Prüfung nicht besteht, wird verworfen. Damit kann niemand von außen einen Abgleich auslösen oder einen fremden Log als geändert melden.",
+      "pr": null,
+      "issues": [],
+      "commit": "80a8c3b",
+      "date": "2026-09-10"
+    }
+  ]
+}
