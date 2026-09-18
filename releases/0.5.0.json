@@ -1,0 +1,71 @@
+{
+  "version": "0.5.0",
+  "tag": "v0.5.0",
+  "date": "2026-09-15",
+  "published_at": "2026-09-15T12:00:00Z",
+  "commits": 0,
+  "headline": "Ein Dashboard, das ins Repository schreibt",
+  "body": [
+    "Erstmals lässt sich ein Log im Browser verwalten statt nur lesen.",
+    "Eine Entscheidung prägt diesen Release: Jede Änderung aus der Oberfläche wird ein Commit im Repository, keine Zeile in der Datenbank. Wer eine Einstellung ändert oder ein Bild hochlädt, sieht das Ergebnis danach in der Repository-Historie."
+  ],
+  "image": null,
+  "covered": [],
+  "changes": [
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "dashboard",
+      "title": "Die Logs, auf die man schreiben darf",
+      "description": "Nach der Anmeldung steht eine Liste der eigenen Logs bereit, mit dem zugehörigen Repository und dem Stand des letzten Abgleichs.\n\nJeder Log hat eine eigene Seite: Einstellungen, die zuletzt aufgetretenen Fehler beim Einlesen, und die Aktionen dazu. Fehler werden benannt, statt als leere Liste zu erscheinen.",
+      "pr": null,
+      "issues": [],
+      "commit": "85a3bc6",
+      "date": "2026-09-15"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "dashboard",
+      "title": "Einstellungen werden ein Commit",
+      "description": "Ändert man Name oder Darstellung eines Logs, schreibt der Dienst die release-log.json neu und committet sie ins Repository.\n\nGespeichert wird gegen den Stand, der beim Öffnen gelesen wurde. Hat jemand anders inzwischen geschrieben, meldet die Oberfläche den Konflikt, statt die fremde Fassung stillschweigend zu ersetzen.",
+      "pr": null,
+      "issues": [],
+      "commit": "d073cec",
+      "date": "2026-09-15"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "media",
+      "title": "Bilder hochladen",
+      "description": "Ein Bild lässt sich im Browser auswählen und landet als Commit im media/-Ordner des Repositories.\n\nDamit gibt es keine zweite Ablage für Bilder, die man beim Umzug oder beim Zurückrollen vergessen könnte -- das Bild gehört zum Repository wie der Text daneben.",
+      "pr": null,
+      "issues": [],
+      "commit": "40ef440",
+      "date": "2026-09-15"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "dashboard",
+      "title": "Einen Log löschen, mit abgetipptem Namen",
+      "description": "Ein Log lässt sich aus dem Dienst entfernen. Dabei verschwinden sein Index und seine zwischengespeicherten Bilder; das Repository selbst bleibt unangetastet.\n\nVorher muss der Name abgetippt werden. Gelöscht wird genau dieser eine Log, keine Nachbarn.",
+      "pr": null,
+      "issues": [],
+      "commit": "7b9da84",
+      "date": "2026-09-15"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "admin",
+      "title": "Freischaltliste im Dashboard",
+      "description": "Administratoren pflegen die Freischaltliste in der Oberfläche: Konten hinzufügen, mit einer Notiz versehen, wieder entfernen.\n\nSichtbar ist auch, wer einen Eintrag hinzugefügt hat.",
+      "pr": null,
+      "issues": [],
+      "commit": "18d7bed",
+      "date": "2026-09-15"
+    }
+  ]
+}
