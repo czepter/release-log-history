@@ -1,0 +1,126 @@
+{
+  "version": "1.0.0",
+  "tag": "v1.0.0",
+  "date": "2026-09-18",
+  "published_at": null,
+  "commits": 0,
+  "headline": "Release Log, erste Fassung",
+  "body": [
+    "Der Dienst steht: ein Repository wird zum Release-Log, die Einträge bleiben als JSON in diesem Repository liegen, und gelesen werden sie als Seite, als API oder eingebettet in die eigene Website.",
+    "Geschrieben wird auf drei Wegen, die sich nicht ausschließen: im Browser-Editor, über MCP aus dem Assistenten heraus, oder von Hand in der Datei. Alle drei landen als Commit im selben Repository."
+  ],
+  "image": null,
+  "covered": [],
+  "changes": [
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "log",
+      "title": "Ein Log, das im eigenen Repository liegt",
+      "description": "Ein Log besteht aus Dateien: einer release-log.json mit den Einstellungen, einer Datei je Release unter releases/ und einem Ordner media/ für Bilder. Diese Dateien liegen im eigenen GitHub-Repository. Wer sie liest, sieht dieselbe Wahrheit wie der Dienst; wer sie ändert, ändert den Log.\n\nDamit ist die Versionsgeschichte des Logs die Versionsgeschichte des Repositories. Ein Release lässt sich in einem Pull Request prüfen, zurückrollen und wieder einspielen, ohne dass irgendwo eine zweite, abweichende Kopie entsteht.\n\nDer Dienst hält davon nur einen Index, der sich jederzeit allein aus den Repositories neu aufbauen lässt. Änderungen kommen per Webhook an und sind gleich danach sichtbar; bleibt eine Zustellung aus, holt eine laufende Abgleichrunde den Log nach. Verschwindet ein Repository wirklich, friert der zugehörige Log ein, statt Lücken zu zeigen.",
+      "pr": null,
+      "issues": [],
+      "commit": "c1a99df",
+      "date": "2026-09-18"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "page",
+      "title": "Öffentliche Log-Seite mit Permalinks",
+      "description": "Jeder Log hat eine Seite, auf der die Releases als Zeitleiste stehen: der jüngste ausgeschrieben, ältere als Anriss zum Aufklappen. Jede Version hat zusätzlich eine eigene Adresse, die sich verlinken und teilen lässt.\n\nDie Kopfzeile bleibt beim Scrollen stehen und zeigt mit, in welcher Version man gerade liest. Einträge sind nach Wichtig, Neu, Änderungen und Behoben gruppiert -- Breaking Changes stehen oben und tauchen kein zweites Mal weiter unten auf.\n\nWer den Log lieber auf der eigenen Seite zeigt, findet dafür fertige Einbett-Schnipsel direkt auf der Log-Seite.",
+      "pr": null,
+      "issues": [],
+      "commit": "bd85659",
+      "date": "2026-09-18"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "api",
+      "title": "JSON-API für jeden Log",
+      "description": "Neben der Seite steht jeder Log als JSON bereit: alle Versionen, ein durchblätterbarer Feed mit der Anzahl der Einträge je Abschnitt, und eine einzelne Version mit allen Details. Bilder werden über dieselbe Adresse ausgeliefert.\n\nDie Antworten tragen ein ETag, das am indexierten Stand des Repositories hängt. Wer If-None-Match mitschickt und nichts verpasst hat, bekommt eine leere Antwort statt derselben Daten noch einmal.\n\nEntwürfe sind über die API nicht zu sehen, solange niemand angemeldet ist, der auf den Log schreiben darf. Bilder in einem privaten Log folgen derselben Regel.",
+      "pr": null,
+      "issues": [],
+      "commit": "24d6149",
+      "date": "2026-09-18"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "editor",
+      "title": "Release-Editor im Browser",
+      "description": "Releases lassen sich im Browser schreiben: Überschrift, Absätze, ein Bild und die Liste der Einträge, jeder mit Typ, Titel und Beschreibung. Bilder werden beim Hochladen als Commit ins media/-Verzeichnis gelegt, nicht in eine separate Ablage.\n\nGespeichert wird gegen den Stand, der beim Öffnen gelesen wurde. Hat in der Zwischenzeit jemand anders geschrieben, meldet der Editor den Konflikt, statt die fremde Fassung stillschweigend zu überschreiben.\n\nWer mit ungespeicherten Änderungen weg will, wird in einem Dialog gefragt -- und Einstellungen eines Logs werden ebenfalls als Commit gespeichert, damit auch sie in der Repository-Historie stehen.",
+      "pr": null,
+      "issues": [],
+      "commit": "62ea7f0",
+      "date": "2026-09-18"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "mcp",
+      "title": "Releases aus dem Assistenten heraus",
+      "description": "Der Dienst spricht MCP. Ein Assistent kann damit die eigenen Logs auflisten, einen Log und eine Version lesen, einen neuen Log anlegen, ein Release schreiben, es veröffentlichen oder zurückziehen und Bilder hochladen. Geschrieben wird als Commit ins Repository, genau wie bei einem Menschen.\n\nDie Verbindung läuft über einen Anmeldeschritt mit Einwilligungsseite: sichtbar ist, welcher Client fragt und worauf er Zugriff bekommt, und erteilte Zugriffe lassen sich später wieder entziehen. Der Zugang erneuert sich im Hintergrund, ohne dass man sich erneut anmelden muss.\n\nWer daraus einen festen Ablauf machen will, bekommt eine mitgelieferte Anleitung, die aus Commits lesbare Einträge macht, statt Commit-Nachrichten durchzureichen.",
+      "pr": null,
+      "issues": [],
+      "commit": "417ce64",
+      "date": "2026-09-18"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "auth",
+      "title": "Anmeldung mit GitHub, offen für alle",
+      "description": "Angemeldet wird mit dem GitHub-Konto. Wer auf ein Repository schreiben darf, darf auch dessen Log schreiben -- die Frage wird bei GitHub gestellt und für fünf Minuten gemerkt, und sie wird sofort neu gestellt, wenn sich Mitgliedschaften oder die Installation ändern.\n\nDie Registrierung ist offen: jedes GitHub-Konto kann sich anmelden. Ohne diese Freigabe gilt weiter eine Freischaltliste, die Administratoren im Dashboard pflegen.\n\nAuf der Kontoseite steht, wer man ist, welche Clients verbunden sind und wie man sich abmeldet. Wie viele Logs ein Konto führen darf, ist begrenzt und lässt sich für die eigene Installation anheben oder aufheben.",
+      "pr": null,
+      "issues": [],
+      "commit": "31d0412",
+      "date": "2026-09-18"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "dashboard",
+      "title": "Dashboard für die eigenen Logs",
+      "description": "Das Dashboard zeigt alle Logs, auf die ein Konto schreiben darf. Ein neuer Log entsteht entweder aus einem frisch angelegten Repository oder durch Übernahme eines bestehenden -- die Repositories, in denen die App installiert ist, werden dabei zur Auswahl vorgeschlagen.\n\nJeder Log hat eine Seite mit Einstellungen, den zuletzt aufgetretenen Synchronisierungsfehlern und den Aktionen dazu. Löschen entfernt Index und Bilder des Logs und verlangt vorher, den Namen abzutippen.\n\nStatt eines Abzeichens, das nur den Zustand nennt, stehen dort Hinweise, die zur nächsten Handlung führen, wenn etwas fehlt.",
+      "pr": null,
+      "issues": [],
+      "commit": "e79e57a",
+      "date": "2026-09-18"
+    },
+    {
+      "type": "fix",
+      "breaking": false,
+      "scope": "install",
+      "title": "Klare Wege, wenn die App nicht installiert ist",
+      "description": "Ohne installierte GitHub-App konnte der Dienst nichts lesen und nichts schreiben -- gezeigt wurde trotzdem eine leere Liste, und ein neuer Log ließ sich anlegen, den niemand je hätte befüllen können.\n\nJetzt sagt die Oberfläche, dass die App fehlt, und führt direkt zur Installation. Ein Konto ohne Installation landet gleich dort, ein Log, den die Installation nie abdecken könnte, wird abgelehnt statt versprochen, und nach der Installation kommt man an der Stelle heraus, an der man losgegangen ist.\n\nDie Texte auf der Installationsseite nennen außerdem, welches Konto gemeint ist, statt nur von \"dem Konto\" zu sprechen.",
+      "pr": null,
+      "issues": [],
+      "commit": "879f3f9",
+      "date": "2026-09-18"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "i18n",
+      "title": "Deutsch und Englisch",
+      "description": "Die Oberfläche spricht Deutsch und Englisch. Die Sprache lässt sich umschalten und bleibt gespeichert; ohne eigene Wahl entscheidet die Spracheinstellung des Browsers, und ohne passende Sprache ist es Deutsch.\n\nDie Abschnittsnamen in den JSON-Dateien bleiben davon unberührt -- sie sind ein festes Kennzeichen, das die Oberfläche übersetzt. Ein Log wird also nicht dadurch zu einem anderen Log, dass jemand die Sprache wechselt.",
+      "pr": null,
+      "issues": [],
+      "commit": "d8405c4",
+      "date": "2026-09-18"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "site",
+      "title": "Startseite, Impressum und Datenschutz",
+      "description": "Die Startseite erklärt, wofür der Dienst da ist, und zeigt den eigenen Changelog als lebendes Beispiel. Wer angemeldet ist, wird von dort direkt ins Dashboard geführt, statt noch einmal die Anmeldung angeboten zu bekommen.\n\nImpressum und Datenschutzerklärung sind da, beide in beiden Sprachen. Die Schriften kommen vom eigenen Server, damit beim Aufruf der Seite keine Verbindung zu einem fremden Anbieter entsteht.",
+      "pr": null,
+      "issues": [],
+      "commit": "3dcaa77",
+      "date": "2026-09-18"
+    }
+  ]
+}
