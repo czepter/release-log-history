@@ -1,0 +1,60 @@
+{
+  "version": "0.3.0",
+  "tag": "v0.3.0",
+  "date": "2026-09-13",
+  "published_at": "2026-09-13T18:00:00Z",
+  "commits": 0,
+  "headline": "Der Index hält sich selbst aktuell",
+  "body": [
+    "Ein Push ins Repository ist jetzt kurz darauf im Log sichtbar, ohne dass jemand einen Befehl ausführt.",
+    "Weil Zustellungen ausbleiben können, verlässt sich der Dienst nicht allein auf sie: eine laufende Abgleichrunde holt nach, was liegengeblieben ist."
+  ],
+  "image": null,
+  "covered": [],
+  "changes": [
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "sync",
+      "title": "Änderungen sind kurz nach dem Push sichtbar",
+      "description": "Meldet GitHub eine Änderung an einem Repository, wird der zugehörige Log abgeglichen und danach aus dem Index ausgeliefert.\n\nDer Weg vom Commit zur geänderten Seite braucht damit keinen Handgriff mehr. Wer die JSON-Dateien direkt im Repository bearbeitet, arbeitet genauso am Log wie jemand, der später einen Editor benutzt.",
+      "pr": null,
+      "issues": [],
+      "commit": "117f91d",
+      "date": "2026-09-13"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "sync",
+      "title": "Eine Runde, die nachholt, was fehlt",
+      "description": "In festem Takt wird geprüft, welche Logs einen Abgleich schulden: alle, die noch nie abgeglichen wurden, und alle, deren letzter Abgleich zu lange her ist.\n\nDamit ist eine verlorene Zustellung kein dauerhafter Schaden mehr, sondern nur eine Verzögerung. Eingefrorene und übersprungene Logs bekommen dabei ebenfalls einen Zeitstempel, damit sie stundenweise wiederkommen statt bei jeder Runde erneut geprüft zu werden.",
+      "pr": null,
+      "issues": [],
+      "commit": "9aebeab",
+      "date": "2026-09-13"
+    },
+    {
+      "type": "fix",
+      "breaking": false,
+      "scope": "sync",
+      "title": "Ein Abgleich je Repository",
+      "description": "Zwei Abgleiche desselben Repositories konnten sich überholen und einander die Hälfte des Ergebnisses überschreiben -- etwa wenn kurz hintereinander gepusht wurde.\n\nJetzt läuft je Repository nur einer zur Zeit. Der neue Stand wird erst als erreicht vermerkt, wenn Releases und Bilder vollständig geschrieben sind. Bricht ein Abgleich vorher ab, gilt der Log als nicht abgeglichen und wird wiederholt, statt mit einer Lücke stehenzubleiben.",
+      "pr": null,
+      "issues": [],
+      "commit": "7e0fa46",
+      "date": "2026-09-13"
+    },
+    {
+      "type": "fix",
+      "breaking": false,
+      "scope": "sync",
+      "title": "Kein fremder Log durch einen passenden Namen",
+      "description": "Über den Umweg älterer Einträge ohne gespeicherte Repository-Kennung ließ sich ein Log beanspruchen, der jemand anderem gehörte.\n\nDer Weg ist geschlossen: entschieden wird über die Kennung des Repositories, ein fehlender Eintrag wird übernommen statt blind vertraut, und gespeichert wird der Name, den GitHub nennt, nicht der, mit dem gefragt wurde.",
+      "pr": null,
+      "issues": [],
+      "commit": "bb1ce66",
+      "date": "2026-09-13"
+    }
+  ]
+}
