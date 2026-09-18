@@ -24,6 +24,17 @@
       "date": "2026-09-18"
     },
     {
+      "type": "feat",
+      "breaking": false,
+      "scope": "page",
+      "title": "Der Dienst steht über dem Log",
+      "description": "Eine öffentliche Log-Seite trug nichts von dem Dienst, der sie ausliefert -- nur eine leise Zeile im Fuß. Wer über den Changelog eines Produkts hereinkam, hatte keinen Weg zur App, und wer bereits angemeldet war, musste die Adresse des Dashboards von Hand eintippen.\n\nJetzt beginnt jede öffentliche Log-Seite mit einer Leiste, die release-log benennt und zur Startseite führt. Daneben steht ein Knopf: für Angemeldete der Weg in die App, für alle anderen die Einladung, einen eigenen Changelog zu führen.\n\nDie Leiste steht im Fluss der Seite, nicht über ihr -- der mitlaufende Kopf des Logs rückt lediglich um ihre Höhe nach unten, die Liste springt beim Scrollen nicht. Auf dem Telefon behält der Name seine Zeile, und der Knopf fällt auf die kurze Beschriftung zurück.",
+      "pr": null,
+      "issues": [],
+      "commit": "7c948b0",
+      "date": "2026-09-18"
+    },
+    {
       "type": "fix",
       "breaking": false,
       "scope": "install",
