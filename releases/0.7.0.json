@@ -1,0 +1,71 @@
+{
+  "version": "0.7.0",
+  "tag": "v0.7.0",
+  "date": "2026-09-15",
+  "published_at": "2026-09-15T21:00:00Z",
+  "commits": 0,
+  "headline": "Schreiben aus dem Assistenten heraus",
+  "body": [
+    "Der ursprüngliche Gedanke hinter dem Dienst: Ein Assistent liest die Commits und schreibt daraus einen Release -- als Commit ins Repository, so wie ein Mensch es täte.",
+    "Ab hier geht das vollständig: anlegen, schreiben, bebildern, veröffentlichen und wieder zurücknehmen."
+  ],
+  "image": null,
+  "covered": [],
+  "changes": [
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "mcp",
+      "title": "Ein Release schreiben",
+      "description": "Ein Assistent kann eine Version anlegen oder ersetzen. Der Dienst prüft die Form, bevor irgendetwas geschrieben wird, und committet die Datei dann ins Repository.\n\nGeschrieben wird gegen den zuletzt gelesenen Stand. Wer einen überholten Stand mitbringt, bekommt einen Konflikt gemeldet statt fremde Arbeit zu überschreiben. Fehlt die Installation, wird gar nicht erst geschrieben.",
+      "pr": null,
+      "issues": [],
+      "commit": "10ad49c",
+      "date": "2026-09-15"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "mcp",
+      "title": "Veröffentlichen, zurücknehmen -- und eine Anleitung dazu",
+      "description": "Ein Release entsteht als Entwurf und bleibt unsichtbar, bis es veröffentlicht wird. Ein veröffentlichtes Release lässt sich wieder zurücknehmen.\n\nDazu liegt eine Anleitung bei, die dem Assistenten sagt, was ein guter Eintrag ist: ein Thema statt eines Commits, ein Satz, den ein Leser auf seinem Bildschirm wiedererkennt, keine Klassennamen und keine Tabellennamen.\n\nEin eingefrorener Log lässt sich auf diesem Weg ebenso wenig verändern wie auf jedem anderen.",
+      "pr": null,
+      "issues": [],
+      "commit": "a262e74",
+      "date": "2026-09-15"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "mcp",
+      "title": "Bilder aus dem Assistenten",
+      "description": "Ein Assistent kann ein Bild hochladen: er bekommt eine Adresse, legt die Bytes dort ab, und der Dienst committet sie ins media/-Verzeichnis. Zurück kommt der Pfad, der im Release stehen muss.\n\nDamit muss niemand Bilddaten durch ein Gespräch schleusen, um sie in einen Release zu bekommen.",
+      "pr": null,
+      "issues": [],
+      "commit": "857cfac",
+      "date": "2026-09-15"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "log",
+      "title": "Einen neuen Log anlegen",
+      "description": "Ein Log lässt sich neu anlegen -- im Dashboard mit einem Knopf, aus dem Assistenten heraus als eigener Aufruf. Dabei entsteht ein Repository mit den Startdateien darin.\n\nDas Anlegen wird bei einer Störung nicht wiederholt: ein zweiter Versuch hätte ein zweites Repository erzeugen können, wenn der erste in Wahrheit durchgegangen war.",
+      "pr": null,
+      "issues": [],
+      "commit": "dc70d51",
+      "date": "2026-09-15"
+    },
+    {
+      "type": "perf",
+      "breaking": false,
+      "scope": "dashboard",
+      "title": "Die Log-Liste fragt einmal, nicht einmal pro Log",
+      "description": "Beim Öffnen der Übersicht wurde für jeden Log einzeln geprüft, ob man ihn schreiben darf. Bei zehn Logs waren das zehn Runden.\n\nJetzt wird das in einer Runde beantwortet. Die Liste öffnet sich spürbar schneller, je mehr Logs ein Konto hat.",
+      "pr": null,
+      "issues": [],
+      "commit": "59187e4",
+      "date": "2026-09-15"
+    }
+  ]
+}
