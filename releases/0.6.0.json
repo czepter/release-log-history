@@ -1,0 +1,71 @@
+{
+  "version": "0.6.0",
+  "tag": "v0.6.0",
+  "date": "2026-09-15",
+  "published_at": "2026-09-15T18:00:00Z",
+  "commits": 0,
+  "headline": "Eine öffentliche Seite und ein Zugang für Clients",
+  "body": [
+    "Zwei Dinge kommen zusammen: Ein Log hat jetzt eine Seite für Leser, nicht nur JSON für Maschinen. Und fremde Programme können einen Zugang bekommen, ohne dass jemand ein Passwort weitergibt.",
+    "Der Zugang ist der Unterbau für das Schreiben über MCP, das im nächsten Release dazukommt. Gelesen werden kann damit schon."
+  ],
+  "image": null,
+  "covered": [],
+  "changes": [
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "page",
+      "title": "Die gehostete Log-Seite",
+      "description": "Jeder Log hat eine Seite, auf der die Releases lesbar untereinander stehen -- Überschrift, Fließtext und die Einträge nach Wichtig, Neu, Änderungen und Behoben sortiert.\n\nJede Version hat zusätzlich eine eigene Adresse, die sich verlinken lässt. Damit kann ein Support-Hinweis oder ein Beitrag genau auf die Version zeigen, um die es geht.",
+      "pr": null,
+      "issues": [],
+      "commit": "bd85659",
+      "date": "2026-09-15"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "auth",
+      "title": "Zugang für fremde Programme, mit Einwilligung",
+      "description": "Ein Programm kann sich beim Dienst anmelden und um Zugriff auf die eigenen Logs bitten. Was dabei passiert, ist sichtbar: eine Einwilligungsseite nennt, welcher Client fragt und worauf er Zugriff bekommt.\n\nErteilt wird der Zugang nur nach ausdrücklicher Zustimmung, und er ist an genau diesen Client gebunden. Ein abgefangener Zwischenschritt nützt niemandem, weil der Client beim Einlösen beweisen muss, dass er derselbe ist, der gefragt hat.\n\nWer sich nicht angemeldet hat, wird zur Anmeldung geschickt und kommt danach an der Stelle heraus, an der er losgegangen ist.",
+      "pr": null,
+      "issues": [],
+      "commit": "c60e0ae",
+      "date": "2026-09-15"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "auth",
+      "title": "Zugänge erneuern und entziehen",
+      "description": "Ein Zugang läuft ab und erneuert sich im Hintergrund, ohne dass man sich erneut anmelden muss. Bei jeder Erneuerung wird der alte Schlüssel ungültig.\n\nTaucht ein bereits verbrauchter Schlüssel noch einmal auf, ist das ein Zeichen, dass er in falsche Hände geraten ist: der gesamte Zugang dieses Clients wird sofort entzogen, andere Clients bleiben unberührt.\n\nZugriffe lassen sich außerdem jederzeit selbst entziehen -- dann ist auch der laufende Zugang erledigt, nicht erst der nächste.",
+      "pr": null,
+      "issues": [],
+      "commit": "ba08542",
+      "date": "2026-09-15"
+    },
+    {
+      "type": "feat",
+      "breaking": false,
+      "scope": "mcp",
+      "title": "Logs und Releases über MCP lesen",
+      "description": "Ein Assistent kann jetzt die Logs auflisten, auf die das verbundene Konto Zugriff hat, einen einzelnen Log mit seinen Versionen abrufen und ein bestimmtes Release lesen.\n\nWer keinen Zugriff auf einen Log hat, bekommt ihn auch über diesen Weg nicht zu sehen.",
+      "pr": null,
+      "issues": [],
+      "commit": "6b43d8a",
+      "date": "2026-09-15"
+    },
+    {
+      "type": "fix",
+      "breaking": false,
+      "scope": "api",
+      "title": "Entwürfe sieht, wer sie schreiben darf",
+      "description": "Entwürfe waren nur für niemanden sichtbar -- auch nicht für die Leute, die den Log schreiben.\n\nJetzt gilt die Regel richtig herum: Wer auf den Log schreiben darf, sieht seine Entwürfe, alle anderen sehen nur Veröffentlichtes. Das gilt auf der Seite, in der API und über MCP gleichermaßen, und ebenso für die Bilder eines nicht öffentlichen Logs.",
+      "pr": null,
+      "issues": [],
+      "commit": "71b1769",
+      "date": "2026-09-15"
+    }
+  ]
+}
